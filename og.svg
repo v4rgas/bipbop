@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect fill="#0a0a0a" width="1200" height="630"/>
+
+  <!-- BB Logo -->
+  <text fill="#00ff88" font-family="monospace" font-weight="bold" font-size="180" x="100" y="280" filter="url(#glow)">BB</text>
+
+  <!-- BipBop Labs -->
+  <text fill="#e0e0e0" font-family="monospace" font-weight="bold" font-size="72" x="100" y="380">BipBop Labs</text>
+
+  <!-- Tagline -->
+  <text fill="#505050" font-family="monospace" font-size="32" x="100" y="450">Careful engineering for real problems.</text>
+
+  <!-- Location -->
+  <text fill="#505050" font-family="monospace" font-size="24" x="100" y="550">Building software in Santiago, Chile</text>
+</svg>
