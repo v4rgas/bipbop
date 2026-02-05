@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BipBop Labs</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #0a0a0a;
+      --text: #e0e0e0;
+      --dim: #505050;
+      --glow: #00ff88;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'SF Mono', 'Consolas', 'Monaco', monospace;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    main {
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .ascii {
+      color: var(--glow);
+      font-size: 0.75rem;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 20px var(--glow);
+      white-space: pre;
+    }
+
+    .labs {
+      color: var(--text);
+      font-size: 1.5rem;
+      letter-spacing: 0.3em;
+      margin-top: -2.5rem;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .tagline {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .tagline strong {
+      color: var(--glow);
+    }
+
+    .author {
+      margin-bottom: 2.5rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .author a {
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .author a:hover {
+      color: var(--glow);
+    }
+
+    .location {
+      color: var(--dim);
+      font-size: 0.85rem;
+    }
+
+    .contact {
+      margin-bottom: 3rem;
+    }
+
+    .contact a {
+      color: var(--glow);
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    .contact a:hover {
+      text-decoration: underline;
+      text-shadow: 0 0 10px var(--glow);
+    }
+
+    footer {
+      padding-top: 2rem;
+      border-top: 1px solid var(--dim);
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.8rem;
+      color: var(--dim);
+    }
+
+    footer a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--glow);
+    }
+
+    .lang {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .lang button {
+      background: none;
+      border: 1px solid var(--dim);
+      color: var(--dim);
+      padding: 0.25rem 0.5rem;
+      font-family: inherit;
+      font-size: 0.7rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .lang button:hover {
+      border-color: var(--text);
+      color: var(--text);
+    }
+
+    .lang button.on {
+      border-color: var(--glow);
+      color: var(--glow);
+    }
+
+    .sound {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.7rem;
+      color: var(--dim);
+      cursor: pointer;
+      transition: color 0.15s;
+    }
+
+    .sound:hover, .sound.playing {
+      color: var(--glow);
+    }
+
+    .bars {
+      display: flex;
+      gap: 2px;
+      align-items: flex-end;
+      height: 10px;
+    }
+
+    .bar {
+      width: 2px;
+      background: currentColor;
+    }
+
+    .sound:not(.playing) .bar { height: 2px; }
+
+    .sound.playing .bar {
+      animation: eq 0.4s ease infinite alternate;
+    }
+
+    .bar:nth-child(1) { animation-delay: 0s; }
+    .bar:nth-child(2) { animation-delay: 0.1s; }
+    .bar:nth-child(3) { animation-delay: 0.2s; }
+    .bar:nth-child(4) { animation-delay: 0.15s; }
+
+    @keyframes eq {
+      from { height: 2px; }
+      to { height: 10px; }
+    }
+
+    [data-i18n] { display: none; }
+    [data-i18n].show { display: inline; }
+    p[data-i18n].show { display: block; }
+
+    @media (max-width: 500px) {
+      .ascii { font-size: 0.45rem; }
+      .lang { top: 1rem; right: 1rem; }
+      .sound { bottom: 1rem; right: 1rem; }
+      footer { justify-content: center; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="lang">
+  <button data-lang="en">EN</button>
+  <button data-lang="es">ES</button>
+</div>
+
+<main>
+  <pre class="ascii"> ▄▄▄▄    ██▓ ██▓███   ▄▄▄▄    ▒█████   ██▓███
+▓█████▄ ▓██▒▓██░  ██▒▓█████▄ ▒██▒  ██▒▓██░  ██▒
+▒██▒ ▄██▒██▒▓██░ ██▓▒▒██▒ ▄██▒██░  ██▒▓██░ ██▓▒
+▒██░█▀  ░██░▒██▄█▓▒ ▒▒██░█▀  ▒██   ██░▒██▄█▓▒ ▒
+░▓█  ▀█▓░██░▒██▒ ░  ░░▓█  ▀█▓░ ████▓▒░▒██▒ ░  ░
+░▒▓███▀▒░▓  ▒▓▒░ ░  ░░▒▓███▀▒░ ▒░▒░▒░ ▒▓▒░ ░  ░
+▒░▒   ░  ▒ ░░▒ ░     ▒░▒   ░   ░ ▒ ▒░ ░▒ ░
+ ░    ░  ▒ ░░░        ░    ░ ░ ░ ░ ▒  ░░
+ ░       ░            ░         ░ ░
+      ░                    ░</pre>
+  <div class="labs">LABS</div>
+
+  <p class="tagline" data-i18n="en">
+    <strong>Software engineering.</strong><br>
+    Careful engineering for real problems.
+  </p>
+  <p class="tagline" data-i18n="es">
+    <strong>Construyendo software.</strong><br>
+    Ingeniería cuidadosa para problemas reales.
+  </p>
+
+  <p class="author">
+    <a href="https://v4rgas.com">Juan Vargas</a><br>
+    <span class="location">Santiago, Chile</span>
+  </p>
+
+  <div class="contact">
+    <a href="mailto:hello@v4rgas.com">hello@v4rgas.com</a>
+  </div>
+
+  <footer>
+    <span>© <span id="year"></span> bipbop labs</span>
+    <div>
+<a href="https://github.com/v4rgas">github</a>
+    </div>
+  </footer>
+</main>
+
+<div class="sound" onclick="toggleSound()">
+  <div class="bars">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+  <span>bip bop</span>
+</div>
+
+<script>
+  const setLang = (lang) => {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      el.classList.toggle('show', el.dataset.i18n === lang);
+    });
+    document.querySelectorAll('[data-lang]').forEach(btn => {
+      btn.classList.toggle('on', btn.dataset.lang === lang);
+    });
+    localStorage.setItem('lang', lang);
+  };
+
+  document.querySelectorAll('[data-lang]').forEach(btn => {
+    btn.onclick = () => setLang(btn.dataset.lang);
+  });
+
+  setLang(localStorage.getItem('lang') || (navigator.language.startsWith('es') ? 'es' : 'en'));
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  let audioCtx, playing = false;
+
+  function bip(freq, duration) {
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.frequency.value = freq;
+    osc.type = 'square';
+    gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+    osc.start();
+    osc.stop(audioCtx.currentTime + duration);
+  }
+
+  function bipbop() {
+    if (!playing) return;
+    bip([440, 880, 660, 550, 770, 330][Math.floor(Math.random() * 6)], 0.1);
+    setTimeout(bipbop, 150 + Math.random() * 350);
+  }
+
+  function toggleSound() {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    playing = !playing;
+    document.querySelector('.sound').classList.toggle('playing', playing);
+    if (playing) bipbop();
+  }
+</script>
+
+</body>
+</html>
