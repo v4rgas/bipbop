@@ -18,8 +18,8 @@
   <text fill="#e0e0e0" font-family="monospace" font-weight="bold" font-size="72" x="100" y="380">BipBop Labs</text>
 
   <!-- Tagline -->
-  <text fill="#505050" font-family="monospace" font-size="32" x="100" y="450">Careful engineering for real problems.</text>
+  <text fill="#505050" font-family="monospace" font-size="32" x="100" y="450">Building cool software with cooler people.</text>
 
   <!-- Location -->
-  <text fill="#505050" font-family="monospace" font-size="24" x="100" y="550">Building software in Santiago, Chile</text>
+  <text fill="#505050" font-family="monospace" font-size="24" x="100" y="550">Santiago, Chile</text>
 </svg>
