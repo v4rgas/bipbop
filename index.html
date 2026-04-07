@@ -383,41 +383,36 @@
     .project-logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
 
     .project-body { min-width: 0; }
-    .project-name {
+    .project-client {
       font-family: var(--serif);
       font-size: 1.85rem;
-      line-height: 1;
-      margin-bottom: 0.25rem;
+      line-height: 1.05;
+      margin-bottom: 0.35rem;
       font-weight: 400;
+      color: var(--text);
+    }
+    .project-name {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.85rem;
     }
     .project-name a {
-      color: var(--text);
+      color: var(--signal);
       text-decoration: none;
       background-image: linear-gradient(var(--signal), var(--signal));
       background-size: 0% 1px;
       background-position: 0 100%;
       background-repeat: no-repeat;
-      transition: background-size 0.4s ease, color 0.3s ease;
+      transition: background-size 0.4s ease;
       padding-bottom: 2px;
     }
-    .project-name a:hover {
-      color: var(--signal);
-      background-size: 100% 1px;
-    }
+    .project-name a:hover { background-size: 100% 1px; }
     .project-name a::after {
       content: " ↗";
-      font-family: var(--sans);
-      font-size: 0.6em;
+      font-size: 0.85em;
       color: var(--dim);
-      vertical-align: super;
-    }
-    .project-client {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--dim);
-      margin-bottom: 0.85rem;
     }
     .project-desc {
       font-size: 0.95rem;
@@ -632,8 +627,8 @@
     <article class="project">
       <div class="project-logo"><img src="cchc.jpg" alt="CChC"></div>
       <div class="project-body">
-        <h3 class="project-name"><a href="https://app.ia-revi.cl/" target="_blank" rel="noopener">Revi</a></h3>
-        <div class="project-client">Cámara Chilena de la Construcción</div>
+        <h3 class="project-client">Cámara Chilena de la Construcción</h3>
+        <div class="project-name"><a href="https://app.ia-revi.cl/" target="_blank" rel="noopener">Revi</a></div>
         <p class="project-desc" data-i18n="en">An AI helper that makes building permits in Chile far less painful. It reads architectural drawings and paperwork, then guides applicants and city reviewers through the regulations together.</p>
         <p class="project-desc" data-i18n="es">Un asistente con IA que hace mucho menos doloroso obtener permisos de edificación en Chile. Lee planos y documentos, y guía a solicitantes y revisores municipales por la normativa, juntos.</p>
       </div>
@@ -643,8 +638,8 @@
     <article class="project">
       <div class="project-logo"><img src="powerlens.png" alt="PowerLens"></div>
       <div class="project-body">
-        <h3 class="project-name"><a href="https://powerlens.ai/" target="_blank" rel="noopener">PowerLens</a></h3>
-        <div class="project-client">powerfinder.ai</div>
+        <h3 class="project-client">PowerFinder.AI</h3>
+        <div class="project-name"><a href="https://powerlens.ai/" target="_blank" rel="noopener">PowerLens</a></div>
         <p class="project-desc" data-i18n="en">A chat interface over your company's own data, so anyone can ask questions and get answers grounded in internal documents.</p>
         <p class="project-desc" data-i18n="es">Una interfaz de chat sobre los datos de tu empresa, para que cualquiera pueda hacer preguntas y obtener respuestas basadas en documentos internos.</p>
       </div>
@@ -654,8 +649,8 @@
     <article class="project">
       <div class="project-logo"><img src="plomolex.jpg" alt="Plomolex"></div>
       <div class="project-body">
-        <h3 class="project-name"><a href="https://plomolex.ai/" target="_blank" rel="noopener">Plomolex</a></h3>
-        <div class="project-client">plomolex.ai</div>
+        <h3 class="project-client">Plomolex</h3>
+        <div class="project-name"><a href="https://plomolex.ai/" target="_blank" rel="noopener">plomolex.ai</a></div>
         <p class="project-desc" data-i18n="en">Automated title studies for real estate transactions, turning days of legal review into minutes.</p>
         <p class="project-desc" data-i18n="es">Estudios de título automatizados para transacciones inmobiliarias, que convierten días de revisión legal en minutos.</p>
       </div>
