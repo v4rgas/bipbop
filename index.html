@@ -142,8 +142,15 @@
       transition: all 0.2s;
     }
     .theme-toggle:hover { color: var(--signal); border-color: var(--signal); }
-    .theme-icon { display: block; line-height: 1; font-size: 0.85rem; }
-    :root[data-theme="light"] .theme-icon { color: var(--signal); }
+    .theme-icon {
+      display: block;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--dim);
+      transition: all 0.2s;
+    }
+    .theme-toggle:hover .theme-icon { background: var(--signal); }
+    :root[data-theme="light"] .theme-icon { background: var(--signal); }
     .lang-toggle {
       display: flex; gap: 0;
       border: 1px solid var(--line);
@@ -585,7 +592,7 @@
   </div>
   <div class="right">
     <button class="theme-toggle" id="theme-toggle" aria-label="toggle theme">
-      <span class="theme-icon">●</span>
+      <span class="theme-icon"></span>
     </button>
     <div class="lang-toggle">
       <button data-lang="en">EN</button>
@@ -746,7 +753,6 @@
   // theme
   const setTheme = (theme) => {
     document.documentElement.setAttribute('data-theme', theme);
-    document.querySelector('.theme-icon').textContent = theme === 'light' ? '○' : '●';
     localStorage.setItem('theme', theme);
   };
   const savedTheme = localStorage.getItem('theme') ||
