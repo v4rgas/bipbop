@@ -446,9 +446,14 @@
     }
     .project-name a:hover { background-size: 100% 1px; }
     .project-name a::after {
-      content: " ↗";
-      font-size: 0.85em;
-      color: var(--dim);
+      content: "";
+      display: inline-block;
+      width: 0.7em;
+      height: 0.7em;
+      margin-left: 0.4em;
+      background-color: var(--signal);
+      -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='M7 17L17 7'/><path d='M8 7h9v9'/></svg>") no-repeat center / contain;
+              mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='M7 17L17 7'/><path d='M8 7h9v9'/></svg>") no-repeat center / contain;
     }
     .project-desc {
       font-size: 0.95rem;
@@ -502,8 +507,13 @@
       box-shadow: 0 0 24px var(--signal-glow);
     }
     .contact-link::before {
-      content: "→";
-      color: var(--signal);
+      content: "";
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      background-color: var(--signal);
+      -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='M5 12h14'/><path d='M12 5l7 7-7 7'/></svg>") no-repeat center / contain;
+              mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><path d='M5 12h14'/><path d='M12 5l7 7-7 7'/></svg>") no-repeat center / contain;
     }
 
     footer {
