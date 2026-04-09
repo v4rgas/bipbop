@@ -275,11 +275,10 @@
       margin-top: 2rem;
       opacity: 0;
       animation: lede-in 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) 2.0s forwards;
-      filter: blur(8px);
     }
     @keyframes lede-in {
-      0%   { opacity: 0; transform: translateY(18px); filter: blur(8px); }
-      100% { opacity: 1; transform: translateY(0);    filter: blur(0); }
+      0%   { opacity: 0; transform: translateY(18px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
     .lede em {
       font-style: italic;
@@ -610,13 +609,14 @@
       z-index: 9998;
       will-change: transform;
     }
+    .boot-half { backface-visibility: hidden; transform: translateZ(0); }
     .boot-half.top    { top: 0;    animation: boot-top    0.85s cubic-bezier(0.76, 0, 0.24, 1) 1.35s forwards; }
     .boot-half.bottom { bottom: 0; animation: boot-bottom 0.85s cubic-bezier(0.76, 0, 0.24, 1) 1.35s forwards; }
     .boot-half.top::after, .boot-half.bottom::before {
       content: "";
       position: absolute; left: 0; right: 0; height: 1px;
       background: var(--signal);
-      box-shadow: 0 0 14px var(--signal), 0 0 28px var(--signal);
+      box-shadow: 0 0 12px var(--signal);
     }
     .boot-half.top::after    { bottom: 0; }
     .boot-half.bottom::before { top: 0; }
@@ -656,20 +656,18 @@
       letter-spacing: -0.03em;
       color: var(--text);
       opacity: 0;
-      filter: blur(24px);
       transform: scale(1.08);
       animation: boot-mark 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.25s forwards;
-      text-shadow: 0 0 60px var(--signal-glow);
+      will-change: transform, opacity;
     }
     .boot-mark .ital {
       font-style: italic;
       color: var(--signal);
-      text-shadow: 0 0 24px var(--signal-glow);
     }
     @keyframes boot-mark {
-      0%   { opacity: 0; filter: blur(24px); transform: scale(1.08); letter-spacing: 0.12em; }
-      55%  { opacity: 1; filter: blur(2px); }
-      100% { opacity: 1; filter: blur(0);  transform: scale(1);    letter-spacing: -0.03em; }
+      0%   { opacity: 0; transform: scale(1.08); letter-spacing: 0.12em; }
+      55%  { opacity: 1; }
+      100% { opacity: 1; transform: scale(1);    letter-spacing: -0.03em; }
     }
 
     .boot-meta {
@@ -697,21 +695,31 @@
       position: fixed; left: 0; right: 0; top: 0;
       height: 2px;
       background: var(--signal);
-      box-shadow: 0 0 24px var(--signal), 0 0 48px var(--signal);
+      box-shadow: 0 0 16px var(--signal);
       opacity: 0;
       z-index: 9999;
+      transform: translateY(0);
+      will-change: transform, opacity;
       animation: boot-scan 1.15s cubic-bezier(0.4, 0, 0.6, 1) 0.05s forwards;
     }
     @keyframes boot-scan {
-      0%   { top: 0;    opacity: 0; }
+      0%   { transform: translateY(0);     opacity: 0; }
       8%   { opacity: 0.95; }
       92%  { opacity: 0.95; }
-      100% { top: 100%; opacity: 0; }
+      100% { transform: translateY(100vh); opacity: 0; }
     }
 
     /* lock scroll while booting */
     body { overflow: hidden; animation: boot-unlock 0s linear 2.2s forwards; }
     @keyframes boot-unlock { to { overflow: auto; } }
+
+    /* lighter path for low-power / mobile / slow-refresh screens */
+    @media (max-width: 640px), (update: slow), (hover: none) and (pointer: coarse) {
+      .boot-mark { text-shadow: none !important; animation-duration: 0.7s !important; }
+      .boot-half.top::after, .boot-half.bottom::before { box-shadow: 0 0 6px var(--signal); }
+      .boot-scan { box-shadow: 0 0 8px var(--signal); animation-duration: 0.9s !important; }
+      .lede, .brand, .intro, .eyebrow { animation-duration: 0.7s !important; }
+    }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
