@@ -194,18 +194,29 @@
       align-items: center;
       gap: 0.6rem;
       opacity: 0;
-      animation: rise 0.8s ease 0.1s forwards;
+      animation: rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 1.7s forwards;
     }
     .eyebrow::before {
       content: "";
-      width: 28px; height: 1px;
+      width: 0; height: 1px;
       background: var(--signal);
+      box-shadow: 0 0 8px var(--signal);
+      animation: draw-rule 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 1.85s forwards;
+    }
+    @keyframes draw-rule {
+      to { width: 28px; }
     }
 
     .brand {
       display: table;
       opacity: 0;
-      animation: rise 1s ease 0.2s forwards;
+      animation: brand-in 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) 1.5s forwards;
+      clip-path: inset(0 100% 0 0);
+    }
+    @keyframes brand-in {
+      0%   { opacity: 0; clip-path: inset(0 100% 0 0); transform: translateY(14px); }
+      60%  { opacity: 1; }
+      100% { opacity: 1; clip-path: inset(0 0 0 0); transform: translateY(0); }
     }
     .eyebrow { display: flex; }
     .wordmark {
@@ -263,7 +274,12 @@
       color: var(--text);
       margin-top: 2rem;
       opacity: 0;
-      animation: rise 1s ease 0.45s forwards;
+      animation: lede-in 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) 2.0s forwards;
+      filter: blur(8px);
+    }
+    @keyframes lede-in {
+      0%   { opacity: 0; transform: translateY(18px); filter: blur(8px); }
+      100% { opacity: 1; transform: translateY(0);    filter: blur(0); }
     }
     .lede em {
       font-style: italic;
@@ -278,7 +294,7 @@
       padding-top: 2rem;
       border-top: 1px solid var(--line);
       opacity: 0;
-      animation: rise 1s ease 0.55s forwards;
+      animation: rise 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) 2.2s forwards;
       position: relative;
     }
     .intro::before {
@@ -586,13 +602,137 @@
       .contact-link { justify-self: start; }
     }
 
+    /* ─── boot / signal-lock overlay ──────────────────────────────── */
+    .boot { position: fixed; inset: 0; z-index: 9998; pointer-events: none; }
+    .boot-half {
+      position: fixed; left: 0; right: 0; height: 50%;
+      background: var(--bg);
+      z-index: 9998;
+      will-change: transform;
+    }
+    .boot-half.top    { top: 0;    animation: boot-top    0.85s cubic-bezier(0.76, 0, 0.24, 1) 1.35s forwards; }
+    .boot-half.bottom { bottom: 0; animation: boot-bottom 0.85s cubic-bezier(0.76, 0, 0.24, 1) 1.35s forwards; }
+    .boot-half.top::after, .boot-half.bottom::before {
+      content: "";
+      position: absolute; left: 0; right: 0; height: 1px;
+      background: var(--signal);
+      box-shadow: 0 0 14px var(--signal), 0 0 28px var(--signal);
+    }
+    .boot-half.top::after    { bottom: 0; }
+    .boot-half.bottom::before { top: 0; }
+    @keyframes boot-top    { to { transform: translateY(-101%); } }
+    @keyframes boot-bottom { to { transform: translateY( 101%); } }
+
+    .boot-content {
+      position: fixed; inset: 0; z-index: 9999;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 1.75rem;
+      animation: boot-fade 0.3s ease 1.15s forwards;
+      pointer-events: none;
+    }
+    @keyframes boot-fade { to { opacity: 0; } }
+
+    .boot-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--signal);
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: 0;
+      border-right: 1px solid var(--signal);
+      animation: boot-type 0.75s steps(26) 0.1s forwards,
+                 boot-caret 0.6s steps(1) 0.85s 3;
+    }
+    @keyframes boot-type  { to { max-width: 28ch; } }
+    @keyframes boot-caret { 50% { border-right-color: transparent; } }
+
+    .boot-mark {
+      font-family: var(--serif);
+      font-size: clamp(4.5rem, 15vw, 12rem);
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      opacity: 0;
+      filter: blur(24px);
+      transform: scale(1.08);
+      animation: boot-mark 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.25s forwards;
+      text-shadow: 0 0 60px var(--signal-glow);
+    }
+    .boot-mark .ital {
+      font-style: italic;
+      color: var(--signal);
+      text-shadow: 0 0 24px var(--signal-glow);
+    }
+    @keyframes boot-mark {
+      0%   { opacity: 0; filter: blur(24px); transform: scale(1.08); letter-spacing: 0.12em; }
+      55%  { opacity: 1; filter: blur(2px); }
+      100% { opacity: 1; filter: blur(0);  transform: scale(1);    letter-spacing: -0.03em; }
+    }
+
+    .boot-meta {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--dim);
+      display: flex; gap: 1.25rem;
+      opacity: 0;
+      animation: boot-meta-in 0.5s ease 0.75s forwards;
+    }
+    .boot-meta span { position: relative; }
+    .boot-meta span + span::before {
+      content: "";
+      position: absolute; left: -0.7rem; top: 50%;
+      width: 3px; height: 3px; border-radius: 50%;
+      background: var(--signal);
+      box-shadow: 0 0 6px var(--signal);
+      transform: translateY(-50%);
+    }
+    @keyframes boot-meta-in { to { opacity: 1; } }
+
+    .boot-scan {
+      position: fixed; left: 0; right: 0; top: 0;
+      height: 2px;
+      background: var(--signal);
+      box-shadow: 0 0 24px var(--signal), 0 0 48px var(--signal);
+      opacity: 0;
+      z-index: 9999;
+      animation: boot-scan 1.15s cubic-bezier(0.4, 0, 0.6, 1) 0.05s forwards;
+    }
+    @keyframes boot-scan {
+      0%   { top: 0;    opacity: 0; }
+      8%   { opacity: 0.95; }
+      92%  { opacity: 0.95; }
+      100% { top: 100%; opacity: 0; }
+    }
+
+    /* lock scroll while booting */
+    body { overflow: hidden; animation: boot-unlock 0s linear 2.2s forwards; }
+    @keyframes boot-unlock { to { overflow: auto; } }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
       .eyebrow, .wordmark, .lede, .meta { opacity: 1 !important; }
+      .boot, .boot-scan { display: none !important; }
+      body { overflow: auto !important; }
     }
   </style>
 </head>
 <body>
+
+<div class="boot" aria-hidden="true">
+  <div class="boot-half top"></div>
+  <div class="boot-half bottom"></div>
+</div>
+<div class="boot-scan" aria-hidden="true"></div>
+<div class="boot-content" aria-hidden="true">
+  <div class="boot-label">// ACQUIRING SIGNAL 108.4</div>
+  <div class="boot-mark">Bip<span class="ital">Bop</span></div>
+  <div class="boot-meta"><span>BIP-BOP-LABS</span><span>SANTIAGO / CL</span><span>EST. 2023</span></div>
+</div>
 
 <div class="statusbar">
   <div class="left">
