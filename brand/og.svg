@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="BipBop Labs">
+  <title>BipBop Labs · a tiny software studio from Santiago</title>
+  <defs>
+    <radialGradient id="glow-tr" cx="78%" cy="8%" r="65%">
+      <stop offset="0%"  stop-color="#6cf09a" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#6cf09a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow-bl" cx="8%" cy="100%" r="60%">
+      <stop offset="0%"  stop-color="#6cf09a" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#6cf09a" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grain" width="3" height="3" patternUnits="userSpaceOnUse">
+      <rect width="3" height="1" fill="#ffffff" fill-opacity="0.012"/>
+    </pattern>
+    <filter id="cursor-glow" x="-50%" y="-100%" width="200%" height="300%">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="#0e0e10"/>
+  <rect width="1200" height="630" fill="url(#glow-tr)"/>
+  <rect width="1200" height="630" fill="url(#glow-bl)"/>
+  <rect width="1200" height="630" fill="url(#grain)"/>
+
+  <!-- wordmark -->
+  <text x="88" y="340" font-family="'Instrument Serif', 'Times New Roman', serif"
+        font-size="196" fill="#f3eee5" letter-spacing="-3">Bip<tspan
+        font-style="italic" fill="#6cf09a">Bop</tspan> Labs<tspan
+        fill="#6cf09a" filter="url(#cursor-glow)">_</tspan></text>
+
+  <!-- lede -->
+  <text x="88" y="430" font-family="'Instrument Serif', 'Times New Roman', serif"
+        font-size="44" fill="#d8d2c5">Thoughtful software for <tspan
+        font-style="italic" fill="#6cf09a">real people</tspan>,</text>
+  <text x="88" y="484" font-family="'Instrument Serif', 'Times New Roman', serif"
+        font-size="44" fill="#d8d2c5">alongside people we genuinely like.</text>
+
+  <!-- meta strip -->
+  <line x1="88" y1="552" x2="1112" y2="552" stroke="#2a2a30" stroke-width="1"/>
+  <text x="88" y="586" font-family="'JetBrains Mono', 'SF Mono', Consolas, monospace"
+        font-size="20" letter-spacing="5" fill="#6b6b74">BIP-BOP-LABS</text>
+  <circle cx="328" cy="580" r="2.5" fill="#6cf09a"/>
+  <text x="344" y="586" font-family="'JetBrains Mono', 'SF Mono', Consolas, monospace"
+        font-size="20" letter-spacing="5" fill="#6b6b74">SANTIAGO / CL</text>
+  <text x="1112" y="586" text-anchor="end" font-family="'JetBrains Mono', 'SF Mono', Consolas, monospace"
+        font-size="20" letter-spacing="5" fill="#f3eee5">BIPBOP.CL</text>
+</svg>

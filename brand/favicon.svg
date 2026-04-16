@@ -15,6 +15,6 @@
     <rect width="64" height="64" fill="url(#g)"/>
     <text x="32" y="42" text-anchor="middle"
           font-family="'Instrument Serif','Times New Roman',serif" font-weight="400" font-size="34"
-          fill="#f3eee5">B<tspan font-style="italic" fill="#d8d2c5">b</tspan><tspan fill="#6cf09a" filter="url(#cur)">_</tspan></text>
+          fill="#f3eee5">B<tspan font-style="italic" fill="#6cf09a">b</tspan><tspan fill="#6cf09a" filter="url(#cur)">_</tspan></text>
   </g>
 </svg>
