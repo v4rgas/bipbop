@@ -439,7 +439,7 @@
       font-weight: 500;
       margin-right: 0.3rem;
     }
-    .project-cared span::after { content: " —"; color: var(--dim); font-weight: 400; }
+    .project-cared span::after { content: ":"; color: var(--dim); font-weight: 400; }
     .project-date {
       font-family: var(--mono);
       font-size: 0.68rem;
@@ -454,10 +454,25 @@
     }
 
     .about {
+      position: relative;
       margin-bottom: 5rem;
+      padding-top: 6rem;
       display: grid;
       grid-template-columns: 1.7fr 1fr;
       gap: 3rem;
+    }
+    .about::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -2rem;
+      right: -2rem;
+      height: 5rem;
+      background-color: var(--text);
+      -webkit-mask: url("brand/skyline.png") no-repeat bottom center / contain;
+              mask: url("brand/skyline.png") no-repeat bottom center / contain;
+      opacity: 0.08;
+      pointer-events: none;
     }
     .about-body {
       font-size: 1rem;
@@ -914,7 +929,7 @@
     'color:#6cf09a;font-family:monospace;font-size:11px;line-height:1.2;'
   );
   console.log(
-    '%cHola. ' + '%cIf you\'re reading this, you probably like the details.\nWe do too — juan@bipbop.cl',
+    '%cHola. ' + '%cIf you\'re reading this, you probably like the details.\nWe do too. juan@bipbop.cl',
     'color:#6cf09a;font-weight:600;',
     'color:inherit;'
   );
