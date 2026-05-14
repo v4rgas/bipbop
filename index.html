@@ -241,9 +241,12 @@
       display: block;
       flex: 0 0 auto;
       height: clamp(72px, 12vw, 132px);
-      width: auto;
+      aspect-ratio: 3416 / 3512;
+      background-color: var(--text);
+      -webkit-mask: url("brand/bipbop_icon.webp") no-repeat center / contain;
+              mask: url("brand/bipbop_icon.webp") no-repeat center / contain;
     }
-    [data-theme="dark"] .wordmark-logo { filter: invert(1); }
+    [data-theme="dark"] .wordmark-logo { background-color: var(--signal); }
     .wordmark svg {
       display: block;
       flex: 1 1 auto;
@@ -670,7 +673,7 @@
 
   <section class="hero">
     <h1 class="wordmark" aria-label="BipBop Labs">
-      <img class="wordmark-logo" src="brand/bipbop_icon.webp" alt="" aria-hidden="true">
+      <span class="wordmark-logo" aria-hidden="true"></span>
       <svg viewBox="0 0 640 140" role="img" aria-hidden="true">
         <text x="0" y="98"
               font-family="'Instrument Serif', 'Times New Roman', serif"
