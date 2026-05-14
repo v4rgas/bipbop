@@ -379,6 +379,15 @@
     }
 
     .services { margin-bottom: 5rem; }
+    .handcraft-mark {
+      display: block;
+      width: clamp(180px, 26vw, 280px);
+      height: auto;
+      margin: 0 0 1.5rem;
+      opacity: 0.55;
+      mix-blend-mode: multiply;
+    }
+    [data-theme="dark"] .handcraft-mark { filter: invert(1); opacity: 0.42; mix-blend-mode: screen; }
     .service-prose {
       max-width: 62ch;
       font-size: 1.05rem;
@@ -687,6 +696,7 @@
   </div>
 
   <section class="services">
+    <img class="handcraft-mark" src="brand/handcraft.webp" alt="" aria-hidden="true">
     <div class="service-prose">
       <p data-i18n="en">We figure out with you what needs to be built. We build it. And we stay close until it actually works.</p>
       <p data-i18n="es">Pensamos contigo qué hay que construir. Lo construimos. Y nos quedamos cerca hasta que de verdad funcione.</p>
