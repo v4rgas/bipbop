@@ -44,6 +44,7 @@
       --signal: #6cf09a;
       --signal-soft: rgba(108, 240, 154, 0.12);
       --signal-glow: rgba(108, 240, 154, 0.16);
+      --caution: #ff8a8a;
       --bg-blur: rgba(14, 14, 16, 0.7);
       --serif:  'Instrument Serif', 'Times New Roman', serif;
       --sans:   'IBM Plex Sans', system-ui, sans-serif;
@@ -59,6 +60,7 @@
       --signal: #0e8a44;
       --signal-soft: rgba(14, 138, 68, 0.09);
       --signal-glow: rgba(14, 138, 68, 0.16);
+      --caution: #c84c4c;
       --bg-blur: rgba(243, 238, 229, 0.75);
     }
 
@@ -391,26 +393,47 @@
       height: 1px;
       background: var(--line);
     }
+    .section-head.signal { color: var(--signal); }
 
     .services { margin-bottom: 5rem; }
+    .service-prose {
+      display: grid;
+      grid-template-columns: minmax(0, 62ch) clamp(110px, 16vw, 170px);
+      gap: 2rem;
+      align-items: start;
+    }
     .services-mascot {
-      display: block;
-      width: clamp(110px, 16vw, 170px);
-      height: auto;
-      margin: 0 auto 2rem;
+      width: 100%;
+      aspect-ratio: 1;
+      background: url("brand/bipbop_logo.webp") no-repeat center / contain;
       opacity: 0.9;
+    }
+    @media (max-width: 560px) {
+      .service-prose {
+        display: block;
+        max-width: 62ch;
+      }
+      .services-mascot {
+        display: block;
+        margin: 0 auto 1.5rem;
+        width: 9rem;
+      }
     }
     [data-theme="dark"] .services-mascot { filter: invert(1); opacity: 0.85; }
     .service-prose {
-      max-width: 62ch;
       font-size: 1.05rem;
       line-height: 1.7;
       color: var(--text);
     }
-    .service-prose p + p { margin-top: 1.25rem; }
+    .service-copy p + p { margin-top: 1.25rem; }
+    .service-do span {
+      color: var(--signal);
+      font-weight: 600;
+      margin-right: 0.35rem;
+    }
     .service-dont { color: var(--text-2); }
     .service-dont span {
-      color: var(--signal);
+      color: var(--caution);
       font-weight: 600;
       margin-right: 0.35rem;
     }
@@ -705,20 +728,21 @@
   <div class="post-services">
   <img class="machine-rail" src="brand/machine.webp" alt="" aria-hidden="true">
 
-  <div class="section-head" id="what-we-do">
-    <span data-i18n="en">what we do</span>
+  <div class="section-head signal" id="what-we-do">
+    <span data-i18n="en">What we do</span>
     <span data-i18n="es">qué hacemos</span>
   </div>
 
-  <img class="services-mascot" src="brand/bipbop_logo.webp" alt="" aria-hidden="true">
-
   <section class="services">
     <div class="service-prose">
-      <p data-i18n="en">We figure out with you what needs to be built. We build it. And we stay close until it actually works.</p>
-      <p data-i18n="es">Pensamos contigo qué hay que construir. Lo construimos. Y nos quedamos cerca hasta que de verdad funcione.</p>
+      <div class="service-copy">
+        <p class="service-do" data-i18n="en"><span>What we do.</span> We figure out with you what needs to be built. We build it. And we stay close until it actually works.</p>
+        <p class="service-do" data-i18n="es"><span>Lo que hacemos.</span> Pensamos contigo qué hay que construir. Lo construimos. Y nos quedamos cerca hasta que de verdad funcione.</p>
 
-      <p class="service-dont" data-i18n="en"><span>What we don't do.</span> We don't execute tickets without understanding what's behind them. We don't build in the dark and deliver only at the end. We don't take every project that walks in.</p>
-      <p class="service-dont" data-i18n="es"><span>Lo que no hacemos.</span> No ejecutamos tickets sin entender qué hay detrás. No construimos a ciegas y entregamos al final. No tomamos cualquier proyecto que llegue.</p>
+        <p class="service-dont" data-i18n="en"><span>what we DON'T do.</span> We don't execute tickets without understanding what's behind them. We don't build in the dark and deliver only at the end. We don't take every project that walks in.</p>
+        <p class="service-dont" data-i18n="es"><span>Lo que NO hacemos.</span> No ejecutamos tickets sin entender qué hay detrás. No construimos a ciegas y entregamos al final. No tomamos cualquier proyecto que llegue.</p>
+      </div>
+      <span class="services-mascot" aria-hidden="true"></span>
     </div>
   </section>
 
